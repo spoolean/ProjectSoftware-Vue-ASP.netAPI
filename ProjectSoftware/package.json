@@ -1,0 +1,47 @@
+{
+  "name": "projectsoftware",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "node aspnetcore-https.js && vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@vue/babel-helper-vue-jsx-merge-props": "^1.2.1",
+    "@vue/babel-preset-jsx": "^1.2.4",
+    "core-js": "^3.6.5",
+    "jest": "^27.4.4",
+    "jest-editor-support": "^30.0.2",
+    "vue": "^2.6.11"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-service": "^4.5.15",
+    "babel-eslint": "^10.1.0",
+    "babel-preset-vue-app": "^2.0.0",
+    "eslint": "^8.4.1",
+    "eslint-plugin-vue": "^8.2.0",
+    "vue-template-compiler": "^2.6.11",
+    "vuex": "^3.6.2"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
