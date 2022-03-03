@@ -4,24 +4,29 @@ import Vue from "vue";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {
-    consent: false,
-    activePane: "consent",
-  },
-  mutations: {
-    setConsent(state, consent) {
-      state.consent = consent;
+    state: {
+        activePage: 1,
     },
-    setActivePane(state, pane) {
-      state.activePane = pane;
+    mutations: {
+        setActivePage(state, page) {
+            state.activePage = page;
+        },
+        incrementPage(state) {
+            state.activePage += 1;
+        },
+        decrementPage(state) {
+            state.activePage -= 1;
+        },
     },
-  },
-  actions: {
-    consentToLanguage({ commit, state }, consent) {
-      commit("setConsent", consent);
-      if (consent) {
-        commit("setActivePane", "languageModel");
-      }
+    actions: {
+        changePage({ commit }, page) {
+            commit("setActivePage", page);
+        },
+        forward({ commit }) {
+            commit("incrementPage");
+        },
+        backward({ commit }) {
+            commit("decrementPage");
+        }
     },
-  },
 });

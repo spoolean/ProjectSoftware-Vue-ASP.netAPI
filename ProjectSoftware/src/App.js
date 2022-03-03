@@ -16,26 +16,13 @@ export default {
     render() {
         return (
             <div>
-                <div>
-                    <b-navbar toggleable="lg" type="dark" variant="info" sticky="true">
-
-                    </b-navbar>
+                <div class = "row sticky bg-dark">
                 </div>
-                {this.$store.state.activePane === "consent" && <Consent />}
-                {this.$store.state.activePane === "languageModel" && <LanguageModel />}
-                {this.$store.state.activePane === "evaluation" && <Evaluation />}
-                {this.$store.state.activePane === "submit" && <Sumbit />}
+                {this.$store.state.activePage === 1 && <Consent />}
+                {this.$store.state.activePage === 2 && <LanguageModel />}
+                {this.$store.state.activePage === 3 && <Evaluation />}
+                {this.$store.state.activePage === 4 && <Sumbit />}
             </div>
-            // <div class="container-fluid">
-
-            //     {/* <Consent />
-            //     <div>
-            //         <b-button>Button</b-button>
-            //         <b-button variant="danger">Button</b-button>
-            //         <b-button variant="success">Button</b-button>
-            //         <b-button variant="outline-primary">Button</b-button>
-            //     </div> */}
-            // </div>
         );
     },
 };

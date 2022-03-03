@@ -1,12 +1,13 @@
 export default {
     name: "Consent",
     data: () => ({
-        consent: false,
     }),
     methods: {
+        // This function sends the user from the consent page to the LanguageModel page
         sendConsent() {
-            this.$store.dispatch("consentToLanguage", this.consent);
-        },
+            // Dispatch the action that will change the page
+            this.$store.dispatch("changePage", 2);
+        }
     },
     computed: {},
     render() {
@@ -55,15 +56,6 @@ export default {
                     withdraw up until sending my data to the student’s University OneDrive
                     account, I need simply leave this page.{" "}
                 </p>
-                <b-form-checkbox
-                    id="checkbox-1"
-                    vModel={this.consent}
-                    name="checkbox-1"
-                    value={true}
-                    unchecked-value={false}
-                >
-                    I accept the terms and use
-                </b-form-checkbox>
                 <div class="row">
                     <button
                         type="button"
