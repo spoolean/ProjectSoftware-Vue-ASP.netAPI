@@ -16,19 +16,20 @@ export default {
     render() {
         return (
             <div>
-                {/* This is the pages navigation bar so users can move about the application*/} 
-                <b-row class="m-1 text-center">
-                    <b-col><b-row><b-button on-click={() => { this.$store.dispatch("backward"); }}><b-icon icon="arrow-left"></b-icon></b-button></b-row></b-col>
-                    <b-col cols="10">
-                        <b-row>
-                            <b-col><b-button on-click={() => { this.$store.dispatch("changePage", 1); }}>Consent</b-button></b-col>
-                            <b-col><b-button on-click={() => { this.$store.dispatch("changePage", 2); }}>Model</b-button></b-col>
-                            <b-col><b-button on-click={() => { this.$store.dispatch("changePage", 3); }}>Evaluation</b-button></b-col>
-                            <b-col><b-button on-click={() => { this.$store.dispatch("changePage", 4); }}>Submit</b-button></b-col>
-                        </b-row>
-                    </b-col>
-                    <b-col><b-row><b-button on-click={() => { this.$store.dispatch("forward"); }}><b-icon icon="arrow-right"></b-icon></b-button></b-row></b-col>
-                </b-row>
+                {/* This is the pages navigation bar so users can move about the application*/}
+                <BRow class="m-1 text-center">
+                    <BCol><BRow><BButton on-click={() => { this.$store.dispatch("backward"); }}><BIcon icon="arrow-left"></BIcon></BButton></BRow></BCol>
+                    <BCol cols="10">
+                        <BRow>
+                            <BCol><BButton on-click={() => { this.$store.dispatch("changePage", 1); }}>Consent</BButton></BCol>
+                            <BCol><BButton on-click={() => { this.$store.dispatch("changePage", 2); }}>Model</BButton></BCol>
+                            <BCol><BButton on-click={() => { this.$store.dispatch("changePage", 3); }}>Evaluation</BButton></BCol>
+                            <BCol><BButton on-click={() => { this.$store.dispatch("changePage", 4); }}>Submit</BButton></BCol>
+                        </BRow>
+                    </BCol>
+                    <BCol><BRow><BButton on-click={() => { this.$store.dispatch("forward"); }}><BIcon icon="arrow-right"></BIcon></BButton
+                        ></BRow></BCol>
+                </BRow>
 
                 {/* Dynamically render each page/component based off the page number */}
                 {this.$store.state.activePage === 1 && <Consent />}
