@@ -12,10 +12,14 @@ export default new Vuex.Store({
             state.activePage = page;
         },
         incrementPage(state) {
-            state.activePage += 1;
+            if (state.activePage != 4) {
+                state.activePage += 1;
+            }
         },
         decrementPage(state) {
-            state.activePage -= 1;
+            if (state.activePage != 1) {
+                state.activePage -= 1;
+            }
         },
     },
     actions: {
