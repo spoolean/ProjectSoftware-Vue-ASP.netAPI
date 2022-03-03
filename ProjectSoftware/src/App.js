@@ -1,6 +1,7 @@
 import Consent from "./components/Consent.js";
 import LanguageModel from "./components/LanguageModel.js";
-import Evaluation from "./components/Evaluation.js"
+import Evaluation from "./components/Evaluation.js";
+import Submit from "./components/Submit.js";
 
 export default {
     name: "App",
@@ -8,6 +9,7 @@ export default {
         Consent,
         LanguageModel,
         Evaluation,
+        Submit
     },
     methods: {},
     computed: {},
@@ -22,6 +24,7 @@ export default {
                 {this.$store.state.activePane === "consent" && <Consent />}
                 {this.$store.state.activePane === "languageModel" && <LanguageModel />}
                 {this.$store.state.activePane === "evaluation" && <Evaluation />}
+                {this.$store.state.activePane === "submit" && <Sumbit />}
             </div>
             // <div class="container-fluid">
 
