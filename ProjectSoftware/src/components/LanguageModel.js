@@ -16,7 +16,7 @@ export default {
                         <BCol>
                             <BRow aligns-h="between">
                                 <BCol cols="10">This is the story model for you to interact with</BCol>
-                                <BCol cols="1" class="ml-3"><BButton on-click={() => { this.$store.state.model1 = ""; }}>Clear</BButton></BCol>
+                                <BCol cols="1"><BButton on-click={() => { this.$store.state.model1 = ""; }}>Clear</BButton></BCol>
                             </BRow>
                             <BRow>
                                 <BFormTextarea
@@ -27,7 +27,7 @@ export default {
                                 ></BFormTextarea>
                             </BRow>
                             <BRow>
-                                <BButton>AI Response</BButton>
+                                <BButton on-click={() => {this.$store.dispatch("sendPrompt")}}>AI Response</BButton>
                             </BRow>
                             <BRow>
                                 <BDropdown text="Voice to generate">

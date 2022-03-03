@@ -7,6 +7,12 @@ namespace ProjectSoftwareASP.Controllers
     [ApiController]
     public class LanguageModelController : ControllerBase
     {
-        
+        [HttpPost]
+        public async Task<IActionResult> GetModelResponse([FromBody] Prompt prompt)
+        {
+            string text = prompt.Text;
+
+            return Ok(text);
+        }
     }
 }

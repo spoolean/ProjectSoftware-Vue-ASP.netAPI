@@ -23,6 +23,9 @@ export default new Vuex.Store({
                 state.activePage -= 1;
             }
         },
+        setModel1(state, text) {
+            state.model1 = text;
+        },
     },
     actions: {
         changePage({ commit }, page) {
@@ -33,6 +36,20 @@ export default new Vuex.Store({
         },
         backward({ commit }) {
             commit("decrementPage");
-        }
+        },
+        sendPrompt({ commit}) {
+            fetch(`${window.location.origin}/api/languagemodel`, {
+                method: 'POST',
+                body: JSON.stringify({ text: this.state.model1 }),
+                headers: { 'Content-Type': 'application/json' }
+            }).then(response => {
+                if (!response.ok) {
+                    throw new Error("Sorry, there has been an error with the langauge model");
+                }
+                return response.json();
+            }).then(data => {
+                commit("setModel1", data);
+            }).catch(error => { console.log(error); });
+        },
     },
 });
