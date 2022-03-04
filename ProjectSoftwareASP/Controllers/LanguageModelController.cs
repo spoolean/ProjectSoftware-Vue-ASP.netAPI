@@ -3,16 +3,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ProjectSoftwareASP.Controllers
 {
-    [Route("api/languagemodel")]
+    [Route("[controller]")]
     [ApiController]
     public class LanguageModelController : ControllerBase
     {
-        [HttpPost]
-        public async Task<IActionResult> GetModelResponse([FromBody] Prompt prompt)
+        [HttpGet(Name = "GetMachineLearning")]
+        public async Task<string> GetModelResponse()
         {
-            string text = prompt.Text;
-
-            return Ok(text);
+            return "Response ok".ToString();
         }
     }
 }

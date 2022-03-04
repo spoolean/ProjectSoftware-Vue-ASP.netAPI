@@ -26,6 +26,12 @@ module.exports = {
         proxy: {
             '^/languagemodel': {
                 target: 'https://localhost:5001/'
+            },
+            '^/tts': {
+                target: 'https://localhost:5001/'
+            },
+            '^/onedrive': {
+                target: 'https://localhost:5001/'
             }
         },
         port: 5002

@@ -38,17 +38,13 @@ export default new Vuex.Store({
             commit("decrementPage");
         },
         sendPrompt({ commit}) {
-            fetch(`${window.location.origin}/api/languagemodel`, {
-                method: 'POST',
-                body: JSON.stringify({ text: this.state.model1 }),
-                headers: { 'Content-Type': 'application/json' }
-            }).then(response => {
-                if (!response.ok) {
-                    throw new Error("Sorry, there has been an error with the langauge model");
-                }
-                return response.json();
-            }).then(data => {
-                commit("setModel1", data);
+            fetch(`${window.location.origin}/languagemodel`, {
+                //method: 'POST',
+                //body: JSON.stringify({ text: this.state.model1 }),
+                //headers: { 'Content-Type': 'application/json' }
+            }).then(response => response.text())
+              .then(data => {
+                  console.log(data);
             }).catch(error => { console.log(error); });
         },
     },
