@@ -1,5 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
+using RestSharp;
+using RestSharp.Serializers;
+using ProjectSoftwareASP.Models;
+using Newtonsoft.Json;
 
 namespace ProjectSoftwareASP.Controllers
 {
@@ -7,10 +12,72 @@ namespace ProjectSoftwareASP.Controllers
     [ApiController]
     public class LanguageModelController : ControllerBase
     {
-        [HttpGet(Name = "GetMachineLearning")]
-        public async Task<string> GetModelResponse()
+        private readonly string SecretKey = "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"; 
+        private readonly RestClient Client = new RestClient();
+
+        [HttpPost(Name = "GetMachineLearning")]
+        public async Task<IActionResult> GetModelResponse([FromBody] LanguageModel model)
         {
-            return "Response ok".ToString();
+            string requestText = model.Text;
+            string requestType = model.Type;
+
+            string url = "https://api.openai.com/v1/engines/text-davinci-001";
+
+            if (string.IsNullOrEmpty(requestText))
+            {
+                return BadRequest("Please enter a valid prompt or question");
+            }
+
+            if (requestType == "completion")
+            {
+                // Rest request and headers.
+                RestRequest request = new RestRequest($"{url}/completions", Method.Post);
+                request.AddHeader("Authorization", $"Bearer {SecretKey}");
+
+                // Body of the request.
+                var json = new
+                {
+                    prompt = $"{requestText}",
+                    max_tokens = 300
+                };
+                request.AddJsonBody(json);
+
+                try
+                {
+                    RestResponse response = await Client.ExecuteAsync(request);
+                    PromptResponseModel responseModel = JsonConvert.DeserializeObject<PromptResponseModel>(response.Content);
+                    Console.WriteLine(responseModel.Choices.FirstOrDefault().Text);
+                    return Ok(responseModel.Choices.FirstOrDefault().Text);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    return BadRequest(e);
+                }
+            }
+            else if (requestType == "chat")
+            {
+                // Rest request and headers.
+                RestRequest request = new RestRequest("https://api.openai.com/v1/engines", Method.Get);
+                request.AddHeader("Authorization", $"Bearer {SecretKey}");
+
+                try
+                {
+                    RestResponse response = await Client.GetAsync(request);
+                    return Ok("This did work");
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    return BadRequest(e);
+                }
+            }
+            else
+            {
+                return BadRequest("There has been an error with your request!");
+            }
+
+            return BadRequest("I dont know how it got here?");
         }
     }
 }

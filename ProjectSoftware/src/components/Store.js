@@ -26,6 +26,9 @@ export default new Vuex.Store({
         setModel1(state, text) {
             state.model1 = text;
         },
+        setModel2(state, text) {
+            state.model2 = text;
+        }
     },
     actions: {
         changePage({ commit }, page) {
@@ -37,15 +40,37 @@ export default new Vuex.Store({
         backward({ commit }) {
             commit("decrementPage");
         },
-        sendPrompt({ commit}) {
+        sendPrompt({ commit }) {
             fetch(`${window.location.origin}/languagemodel`, {
+                method: 'POST',
+                body: JSON.stringify({ text: this.state.model1, type: 'completion' }),
+                headers: { 'Content-Type': 'application/json' }
+            }).then(response => response.text())
+                .then(data => {
+                    console.log(data);
+                    commit("setModel1", data);
+                }).catch(error => { console.log(error); });
+        },
+        sendQuestion({ commit }) {
+            fetch(`${window.location.origin}/languagemodel`, {
+                method: 'POST',
+                body: JSON.stringify({ text: this.state.model2, type: 'chat' }),
+                headers: { 'Content-Type': 'application/json' }
+            }).then(response => response.text())
+                .then(data => {
+                    console.log(data);
+                    commit("setModel2", data);
+                }).catch(error => { console.log(error); });
+        },
+        sendTTS({ commit }) {
+            fetch(`${window.location.origin}/tts`, {
                 //method: 'POST',
                 //body: JSON.stringify({ text: this.state.model1 }),
                 //headers: { 'Content-Type': 'application/json' }
             }).then(response => response.text())
-              .then(data => {
-                  console.log(data);
-            }).catch(error => { console.log(error); });
-        },
+                .then(data => {
+                    console.log(data);
+                }).catch(error => { console.log(error); });
+        }
     },
 });

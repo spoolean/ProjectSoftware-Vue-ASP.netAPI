@@ -38,14 +38,27 @@ export default {
                             </BRow>
                         </BCol>
                         <BCol>
-                            <BRow>
-
+                            <BRow aligns-h="between">
+                                <BCol cols="10">This is the story model for you to interact with</BCol>
+                                <BCol cols="1"><BButton on-click={() => { this.$store.state.model2 = ""; }}>Clear</BButton></BCol>
                             </BRow>
                             <BRow>
-
+                                <BFormTextarea
+                                    id="Model1"
+                                    v-model={this.$store.state.model2}
+                                    placeholder={this.placeholder}
+                                    rows="8"
+                                ></BFormTextarea>
                             </BRow>
                             <BRow>
-
+                                <BButton on-click={() => { this.$store.dispatch("sendQuestion") }}>AI Response</BButton>
+                            </BRow>
+                            <BRow>
+                                <BDropdown text="Voice to generate">
+                                    <BDropdownItemButton>Voice 1</BDropdownItemButton>
+                                    <BDropdownItemButton>Voice 2</BDropdownItemButton>
+                                    <BDropdownItemButton>Voice 3</BDropdownItemButton>
+                                </BDropdown>
                             </BRow>
                         </BCol>
                     </BRow>
