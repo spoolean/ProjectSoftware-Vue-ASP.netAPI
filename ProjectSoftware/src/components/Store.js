@@ -8,10 +8,11 @@ export default new Vuex.Store({
         activePage: 1,
         model1: "",
         model2: "",
-        //survey: {
-        //    checkBox: false,
-
-        //}
+        survey: {
+            rating: null,
+            checkBox: false,
+            reviewText: "",
+        }
     },
     mutations: {
         setActivePage(state, page) {
@@ -59,12 +60,8 @@ export default new Vuex.Store({
                 }).catch(error => { console.log(error); });
         },
         sendTTS({ commit }, modelNumber) {
-            let modelText = "";
-            if (modelNumber === 1) {
-                modelText = this.state.model1;
-            } else {
-                modelText = this.state.model2;
-            }
+            let modelText = (modelNumber === 1) ? this.state.model1 : this.state.model2;
+
             let audio = new Audio(`${window.location.origin}/tts/getazure/${modelText}`)
             audio.play();
         }
