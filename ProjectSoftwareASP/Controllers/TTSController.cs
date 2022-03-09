@@ -25,7 +25,7 @@ namespace ProjectSoftwareASP.Controllers
 
             // Instanciate Azure Cognitive Speech Service with my secret key.
             SpeechConfig config = SpeechConfig.FromSubscription("a5933538f93e45a4bf4566c35d8cd955", "uksouth");
-            config.SetSpeechSynthesisOutputFormat(SpeechSynthesisOutputFormat.Audio16Khz32KBitRateMonoMp3); // Set to mp3 format. 
+            config.SetSpeechSynthesisOutputFormat(SpeechSynthesisOutputFormat.Audio24Khz160KBitRateMonoMp3); // Set to mp3 format. 
             config.SpeechSynthesisLanguage = "en-GB"; // Set the language.
             config.SpeechSynthesisVoiceName = "en-GB-RyanNeural"; // Set the voice model
 

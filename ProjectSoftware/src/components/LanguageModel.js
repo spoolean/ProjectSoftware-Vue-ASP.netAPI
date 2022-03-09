@@ -27,11 +27,11 @@ export default {
                                 ></BFormTextarea>
                             </BRow>
                             <BRow>
-                                <BButton on-click={() => {this.$store.dispatch("sendPrompt")}}>AI Response</BButton>
+                                <BButton on-click={() => {this.$store.dispatch("sendPrompt", 1) }}>AI Response</BButton>
                             </BRow>
                             <BRow>
                                 <BDropdown text="Voice to generate">
-                                    <BDropdownItemButton>Voice 1</BDropdownItemButton>
+                                    <BDropdownItemButton on-click={() => { this.$store.dispatch("sendTTS", 1); }}>Voice 1</BDropdownItemButton>
                                     <BDropdownItemButton>Voice 2</BDropdownItemButton>
                                     <BDropdownItemButton>Voice 3</BDropdownItemButton>
                                 </BDropdown>
@@ -51,7 +51,7 @@ export default {
                                 ></BFormTextarea>
                             </BRow>
                             <BRow>
-                                <BButton on-click={() => { this.$store.dispatch("sendQuestion") }}>AI Response</BButton>
+                                <BButton on-click={() => { this.$store.dispatch("sendPrompt", 1) }}>AI Response</BButton>
                             </BRow>
                             <BRow>
                                 <BDropdown text="Voice to generate">

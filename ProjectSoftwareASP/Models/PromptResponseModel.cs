@@ -12,10 +12,5 @@ namespace ProjectSoftwareASP.Models
     {
         [JsonProperty("text")]
         public string Text { get; set; }
-        //[JsonProperty("name")]
-        //public string Name { get; set; }
-        //[JsonProperty("")]
-        //public string Description { get; set; }
-
     }
 }

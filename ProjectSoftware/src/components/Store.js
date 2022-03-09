@@ -8,6 +8,10 @@ export default new Vuex.Store({
         activePage: 1,
         model1: "",
         model2: "",
+        //survey: {
+        //    checkBox: false,
+
+        //}
     },
     mutations: {
         setActivePage(state, page) {
@@ -40,37 +44,29 @@ export default new Vuex.Store({
         backward({ commit }) {
             commit("decrementPage");
         },
-        sendPrompt({ commit }) {
+        sendPrompt({ commit }, modelNumber) {
+            let model = (modelNumber === 1) ? this.state.model1 : this.state.model2;
+            let setModel = (modelNumber === 1) ? "setModel1" : "setModel2";
+            let type = (modelNumber === 1) ? 'completion' : 'chat';
             fetch(`${window.location.origin}/languagemodel`, {
                 method: 'POST',
-                body: JSON.stringify({ text: this.state.model1, type: 'completion' }),
+                body: JSON.stringify({ text: model, type: type }),
                 headers: { 'Content-Type': 'application/json' }
             }).then(response => response.text())
                 .then(data => {
                     console.log(data);
-                    commit("setModel1", data);
+                    commit(setModel, data);
                 }).catch(error => { console.log(error); });
         },
-        sendQuestion({ commit }) {
-            fetch(`${window.location.origin}/languagemodel`, {
-                method: 'POST',
-                body: JSON.stringify({ text: this.state.model2, type: 'chat' }),
-                headers: { 'Content-Type': 'application/json' }
-            }).then(response => response.text())
-                .then(data => {
-                    console.log(data);
-                    commit("setModel2", data);
-                }).catch(error => { console.log(error); });
-        },
-        sendTTS({ commit }) {
-            fetch(`${window.location.origin}/tts`, {
-                //method: 'POST',
-                //body: JSON.stringify({ text: this.state.model1 }),
-                //headers: { 'Content-Type': 'application/json' }
-            }).then(response => response.text())
-                .then(data => {
-                    console.log(data);
-                }).catch(error => { console.log(error); });
+        sendTTS({ commit }, modelNumber) {
+            let modelText = "";
+            if (modelNumber === 1) {
+                modelText = this.state.model1;
+            } else {
+                modelText = this.state.model2;
+            }
+            let audio = new Audio(`${window.location.origin}/tts/getazure/${modelText}`)
+            audio.play();
         }
     },
 });
