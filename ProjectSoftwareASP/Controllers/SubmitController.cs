@@ -10,7 +10,6 @@ namespace ProjectSoftwareASP.Controllers
         [HttpPost]
         public IActionResult PostSurvey([FromBody] SumbitContent Response)
         {
-            Console.WriteLine(Response);
             return Ok("Deployed to the server successfully");
         }
     }
