@@ -30,7 +30,7 @@ module.exports = {
             '^/tts': {
                 target: 'https://localhost:5001/'
             },
-            '^/onedrive': {
+            '^/submit': {
                 target: 'https://localhost:5001/'
             }
         },

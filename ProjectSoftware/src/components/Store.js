@@ -59,11 +59,20 @@ export default new Vuex.Store({
                     commit(setModel, data);
                 }).catch(error => { console.log(error); });
         },
-        sendTTS({ commit }, modelNumber) {
+        sendTTS(modelNumber) {
             let modelText = (modelNumber === 1) ? this.state.model1 : this.state.model2;
 
             let audio = new Audio(`${window.location.origin}/tts/getazure/${modelText}`)
             audio.play();
+        },
+        submit() {
+            fetch(`${window.location.origin}/submit`, {
+                method: 'POST',
+                body: JSON.stringify(this.state.survey),
+                headers: { 'Content-Type': 'application/json' }
+            }).then(response => response.text()).then(data => {
+                console.log(data);
+            }).catch(error => { console.log(error); });
         }
     },
 });
