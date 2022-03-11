@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProjectSoftwareASP.Models;
 
 namespace ProjectSoftwareASP.Controllers
 {
@@ -7,8 +8,9 @@ namespace ProjectSoftwareASP.Controllers
     public class SubmitController : Controller
     {
         [HttpPost]
-        public async Task<IActionResult> PostSurvey([FromBody] string Response)
+        public IActionResult PostSurvey([FromBody] SumbitContent Response)
         {
+            Console.WriteLine(Response);
             return Ok("Deployed to the server successfully");
         }
     }

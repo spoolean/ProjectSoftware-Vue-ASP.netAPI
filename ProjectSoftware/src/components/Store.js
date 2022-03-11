@@ -65,7 +65,8 @@ export default new Vuex.Store({
             let audio = new Audio(`${window.location.origin}/tts/getazure/${modelText}`)
             audio.play();
         },
-        submit() {
+        submitResponse() {
+            console.log(JSON.stringify(this.state.survey));
             fetch(`${window.location.origin}/submit`, {
                 method: 'POST',
                 body: JSON.stringify(this.state.survey),
@@ -73,6 +74,6 @@ export default new Vuex.Store({
             }).then(response => response.text()).then(data => {
                 console.log(data);
             }).catch(error => { console.log(error); });
-        }
+        },
     },
 });
