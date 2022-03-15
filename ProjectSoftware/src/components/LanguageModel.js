@@ -5,7 +5,9 @@ export default {
     data: () => ({
         placeholder: "Give the bot a prompt"
     }),
-    methods: {},
+    methods: {
+
+    },
     computed: {},
     render() {
         return (
@@ -31,9 +33,9 @@ export default {
                             </BRow>
                             <BRow>
                                 <BDropdown text="Voice to generate">
-                                    <BDropdownItemButton on-click={() => { this.$store.dispatch("sendTTS", 1); }}>Voice 1</BDropdownItemButton>
-                                    <BDropdownItemButton>Voice 2</BDropdownItemButton>
-                                    <BDropdownItemButton>Voice 3</BDropdownItemButton>
+                                    <BDropdownItemButton on-click={() => { this.$store.dispatch("sendTTS", {model: 1, tts: 0}); }}>Voice 1</BDropdownItemButton>
+                                    <BDropdownItemButton on-click={() => { this.$store.dispatch("sendTTS", {model: 1, tts: 1});}}>Voice 2</BDropdownItemButton>
+                                    <BDropdownItemButton on-click={() => { this.$store.dispatch("sendTTS", {model: 1, tts: 2});}}>Voice 3</BDropdownItemButton>
                                 </BDropdown>
                             </BRow>
                         </BCol>

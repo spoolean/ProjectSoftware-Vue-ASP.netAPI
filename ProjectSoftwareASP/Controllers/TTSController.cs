@@ -103,7 +103,6 @@ namespace ProjectSoftwareASP.Controllers
             try
             {
                 RestResponse response = await Client.ExecuteAsync(request);
-                Console.WriteLine(response.Content);
                 GoogleResponseModel responseModel = JsonConvert.DeserializeObject<GoogleResponseModel>(response.Content);
                 byte[] audioStream = Convert.FromBase64String(responseModel.AudioContent);
                 return File(audioStream, "audio/mpeg");
