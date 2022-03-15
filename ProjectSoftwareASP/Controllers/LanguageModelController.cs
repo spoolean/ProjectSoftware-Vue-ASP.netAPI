@@ -51,8 +51,7 @@ namespace ProjectSoftwareASP.Controllers
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine(e);
-                    return BadRequest(e);
+                    return BadRequest(e.Message);
                 }
             }
             else if (requestType == "chat")
@@ -68,8 +67,7 @@ namespace ProjectSoftwareASP.Controllers
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine(e);
-                    return BadRequest(e);
+                    return BadRequest(e.Message);
                 }
             }
             else
