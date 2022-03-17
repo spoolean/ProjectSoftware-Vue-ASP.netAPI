@@ -57,29 +57,30 @@ namespace ProjectSoftwareASP.Controllers
         [Route("GetAWS/{answer}")]
         public async Task<FileContentResult> AWSTTS(string answer)
         {
-            // Credentials 
+            answer = answer.Replace("_", " ");
+
+            RestRequest request = new RestRequest("http://polly.eu-west-2.amazonaws.com/v1/speech", Method.Post);
+            request.AddHeader("Authorization", "AKIA4AGGKSATIMNIPR5B");
+
+            var body = new
+            {
+                Engine = "neural",
+                LanguageCode = "en-GB",
+                OutputFormat = "mp3",
+                Text = answer,
+                VoiceId = "Joanna"
+            };
+            request.AddJsonBody(body);
             
-            // Setting up the config
-            AmazonPollyConfig config = new AmazonPollyConfig();
-            config.ServiceURL = "http://polly.eu-west-2.amazonaws.com";
-            // Setting the client with the config file. 
-            AmazonPollyClient pc = new AmazonPollyClient(config);
-
-            // Requesting the speech synthesis. 
-            SynthesizeSpeechRequest sreq = new SynthesizeSpeechRequest();
-            sreq.Text = answer;
-            sreq.Engine = Engine.Neural;
-            sreq.OutputFormat = Amazon.Polly.OutputFormat.Mp3;
-            sreq.VoiceId = VoiceId.Matthew;
-
             try
             {
-                // Executing the async request.
-                SynthesizeSpeechResponse sres = await pc.SynthesizeSpeechAsync(sreq);
-                return File(Encoding.UTF8.GetBytes("This worked for some reason"), "text/plain");
+                RestResponse response = await Client.ExecuteAsync(request);
+                Console.WriteLine(response.ToString);
+                return File(Encoding.UTF8.GetBytes(response.Content), "text/plain");
             }
             catch (Exception e)
             {
+                Console.WriteLine(e);
                 return File(Encoding.UTF8.GetBytes(e.Message), "text/plain");
             }
         }
