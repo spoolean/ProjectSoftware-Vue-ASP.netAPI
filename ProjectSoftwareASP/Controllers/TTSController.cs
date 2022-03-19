@@ -23,10 +23,11 @@ namespace ProjectSoftwareASP.Controllers
         /// transpiled into a byte[] to be sent to the user.
         /// </summary>
         /// <param name="answer"></param>
+        /// <param name="engine"></param>
         /// <returns>byte[] audioStream</returns>
         [HttpGet]
-        [Route("GetAzure/{answer}")]
-        public async Task<FileContentResult> AzureTTS(string answer)
+        [Route("GetAzure")]
+        public async Task<FileContentResult> AzureTTS(string answer, string engine)
         {
             answer = answer.Replace("_", " ");
             string fileName = GetHashString(answer);
@@ -86,17 +87,21 @@ namespace ProjectSoftwareASP.Controllers
         }
 
         [HttpGet]
-        [Route("GetGoogle/{answer}")]
-        public async Task<FileContentResult> GoogleTTS(string answer)
+        [Route("GetGoogle")]
+        public async Task<FileContentResult> GoogleTTS(string answer, string engine)
         {
+            Console.WriteLine(engine);
             answer = answer.Replace("_", " ");
+
+            if (engine == "neural") { engine = "Wavenet"; }
+            else if (engine == "standard") { engine = "Standard"; }
 
             RestRequest request = new RestRequest($"https://texttospeech.googleapis.com/v1beta1/text:synthesize?key={GoogleSecretKey}", Method.Post);
 
             var body = new
             {
                 input = new { text = answer },
-                voice = new { languageCode = "en-GB", name = "en-GB-Wavenet-A" },
+                voice = new { languageCode = "en-GB", name = $"en-GB-{engine}-A" },
                 audioConfig = new { audioEncoding = "MP3_64_KBPS" }
             };
             request.AddJsonBody(body);
@@ -110,7 +115,7 @@ namespace ProjectSoftwareASP.Controllers
             }
             catch (Exception e)
             {
-                return File(Encoding.UTF8.GetBytes(e.ToString()), "text/plain");
+                return File(Encoding.UTF8.GetBytes(e.Message), "text/plain");
             }
         }
 
