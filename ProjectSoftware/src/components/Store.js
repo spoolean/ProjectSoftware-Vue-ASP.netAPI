@@ -5,9 +5,10 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
+        loading: false,
         activePage: 1,
         model1: "",
-        model2: "",
+        model2: "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.\n\nHuman: ",
         survey: {
             rating: null,
             checkBox: false,
@@ -29,10 +30,10 @@ export default new Vuex.Store({
             }
         },
         setModel1(state, text) {
-            state.model1 = text;
+            state.model1 += text;
         },
         setModel2(state, text) {
-            state.model2 = text;
+            state.model2 += text;
         }
     },
     actions: {
@@ -53,18 +54,22 @@ export default new Vuex.Store({
                 method: 'POST',
                 body: JSON.stringify({ text: model, type: type }),
                 headers: { 'Content-Type': 'application/json' }
-            }).then(response => response.text())
-                .then(data => {
-                    console.log(data);
-                    commit(setModel, data);
-                }).catch(error => { console.log(error); });
+            }).then(response => {
+                if (!response.ok) {
+                    throw new Error(response.text);
+                }
+                return response.text();
+            }).then(data => {
+                console.log(data);
+                commit(setModel, data);
+            }).catch(error => { console.log(error); });
         },
         sendTTS({ commit }, { model, tts }) {
             let modelText = (model === 1) ? this.state.model1 : this.state.model2;
-            let ttsChoice = ['getazure', 'getaws', 'getgoogle'];
+            let ttsChoice = ['getazure','getgoogle',];
             let ttsModel = ttsChoice[tts];
 
-            let audio = new Audio(`${window.location.origin}/tts/${ttsModel}/${modelText}`)
+            let audio = new Audio(`${window.location.origin}/tts/${ttsModel}/?answer=${modelText}`)
             audio.play();
         },
         submitResponse({ commit }) {
@@ -73,7 +78,12 @@ export default new Vuex.Store({
                 method: 'POST',
                 body: JSON.stringify(this.state.survey),
                 headers: { 'Content-Type': 'application/json' }
-            }).then(response => response.text()).then(data => {
+            }).then(response => {
+                if (!response.ok) {
+                    throw new Error(response.text);
+                }
+                return response.text();
+            }).then(data => {
                 console.log(data);
             }).catch(error => { console.log(error); });
         },

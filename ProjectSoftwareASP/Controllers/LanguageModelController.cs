@@ -38,7 +38,7 @@ namespace ProjectSoftwareASP.Controllers
                 var json = new
                 {
                     prompt = $"{requestText}",
-                    max_tokens = 300
+                    max_tokens = 600
                 };
                 request.AddJsonBody(json);
 
@@ -56,14 +56,37 @@ namespace ProjectSoftwareASP.Controllers
             }
             else if (requestType == "chat")
             {
+                string promptFront = "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.\n\nHuman: ";
+                if (!requestText.Contains(promptFront))
+                {
+                    requestText = promptFront + requestText;
+                }
+                string[] stopArray = { " Human:", " AI:" };
+                Console.WriteLine(requestText);
+
                 // Rest request and headers.
-                RestRequest request = new RestRequest("https://api.openai.com/v1/engines", Method.Get);
+                RestRequest request = new RestRequest($"{url}/completions", Method.Post);
                 request.AddHeader("Authorization", $"Bearer {SecretKey}");
+
+                // Body of the request.
+                var json = new
+                {
+                    prompt = $"{requestText}\nAI: ",
+                    max_tokens = 600,
+                    stop = stopArray,
+                    frequency_penalty = 0.0,
+                    presence_penalty = 0.6,
+                    temperature = 0.9
+                };
+                Console.WriteLine(json);
+                request.AddJsonBody(json);
 
                 try
                 {
-                    RestResponse response = await Client.GetAsync(request);
-                    return Ok("This did work");
+                    RestResponse response = await Client.ExecuteAsync(request);
+                    PromptResponseModel responseModel = JsonConvert.DeserializeObject<PromptResponseModel>(response.Content);
+                    Console.WriteLine(responseModel.Choices.FirstOrDefault().Text);
+                    return Ok("\nAI: "+responseModel.Choices.FirstOrDefault().Text);
                 }
                 catch (Exception e)
                 {

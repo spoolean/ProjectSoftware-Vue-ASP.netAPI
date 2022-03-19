@@ -33,9 +33,10 @@ export default {
                             </BRow>
                             <BRow>
                                 <BDropdown text="Voice to generate">
-                                    <BDropdownItemButton on-click={() => { this.$store.dispatch("sendTTS", {model: 1, tts: 0}); }}>Voice 1</BDropdownItemButton>
-                                    <BDropdownItemButton on-click={() => { this.$store.dispatch("sendTTS", {model: 1, tts: 1});}}>Voice 2</BDropdownItemButton>
-                                    <BDropdownItemButton on-click={() => { this.$store.dispatch("sendTTS", {model: 1, tts: 2});}}>Voice 3</BDropdownItemButton>
+                                    <BDropdownItemButton on-click={() => { this.$store.dispatch("sendTTS", { model: 1, tts: 0 }); }}>Voice 1</BDropdownItemButton>
+                                    <BDropdownItemButton on-click={() => { this.$store.dispatch("sendTTS", { model: 1, tts: 1 }); }}>Voice 2</BDropdownItemButton>
+                                    <BDropdownItemButton on-click={() => { this.$store.dispatch("sendTTS", { model: 1, tts: 2 }); }}>Voice 3</BDropdownItemButton>
+                                    <BDropdownItemButton on-click={() => { this.$store.dispatch("sendTTS", { model: 1, tts: 3 }); }}>Voice 3</BDropdownItemButton>
                                 </BDropdown>
                             </BRow>
                         </BCol>
@@ -53,7 +54,7 @@ export default {
                                 ></BFormTextarea>
                             </BRow>
                             <BRow>
-                                <BButton on-click={() => { this.$store.dispatch("sendPrompt", 1) }}>AI Response</BButton>
+                                <BButton on-click={() => { this.$store.dispatch("sendPrompt", 2) }}>AI Response</BButton>
                             </BRow>
                             <BRow>
                                 <BDropdown text="Voice to generate">
