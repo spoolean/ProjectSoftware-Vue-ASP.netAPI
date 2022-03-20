@@ -57,7 +57,7 @@ export default new Vuex.Store({
                 headers: { 'Content-Type': 'application/json' }
             }).then(response => {
                 if (!response.ok) {
-                    throw new Error(response.text);
+                    throw new Error(response.statusText);
                 }
                 return response.text();
             }).then(data => {
@@ -83,7 +83,7 @@ export default new Vuex.Store({
                 headers: { 'Content-Type': 'application/json' }
             }).then(response => {
                 if (!response.ok) {
-                    throw new Error(response.text);
+                    throw new Error(response.statusText);
                 }
                 return response.text();
             }).then(data => {

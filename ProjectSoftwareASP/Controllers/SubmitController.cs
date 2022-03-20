@@ -14,12 +14,18 @@ namespace ProjectSoftwareASP.Controllers
         {
             try
             {
-                return Ok("This worked");
+                var jsonConvert = JsonConvert.SerializeObject(Response);
+                using StreamWriter file = new("responses.txt", append: true);
+                file.WriteLine(jsonConvert+",");
+
+                return Ok("Deployed to the server successfully");
             }
             catch (Exception e)
             {
                 return BadRequest(e.Message);
             }
         }
+
+
     }
 }
