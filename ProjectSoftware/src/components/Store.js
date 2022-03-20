@@ -50,6 +50,7 @@ export default new Vuex.Store({
             let model = (modelNumber === 1) ? this.state.model1 : this.state.model2;
             let setModel = (modelNumber === 1) ? "setModel1" : "setModel2";
             let type = (modelNumber === 1) ? 'completion' : 'chat';
+
             fetch(`${window.location.origin}/languagemodel`, {
                 method: 'POST',
                 body: JSON.stringify({ text: model, type: type }),

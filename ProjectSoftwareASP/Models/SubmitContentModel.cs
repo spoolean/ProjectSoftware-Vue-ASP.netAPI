@@ -2,7 +2,7 @@
 
 namespace ProjectSoftwareASP.Models
 {
-    public class SumbitContent{
+    public class SubmitContent{
         [JsonProperty("checkBox")]
         public bool CheckBox { get; set; }
 
