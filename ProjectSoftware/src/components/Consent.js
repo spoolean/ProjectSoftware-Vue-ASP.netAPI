@@ -1,3 +1,5 @@
+import { BButton, BContainer, BModal } from "bootstrap-vue";
+
 export default {
     name: "Consent",
     data: () => ({
@@ -12,59 +14,33 @@ export default {
     computed: {},
     render() {
         return (
-            <div id="consent" class="container">
-                <h3 class="display-3">
-                    Undergraduate study on deep-neural langauge models and speech
-                    synthesis
-                </h3>
-                <h6 class="display-6">
-                    by James Roche (19704410), Undergraduate at the University Of Lincoln
-                </h6>
-                <p>
-                    Hi. My name is James Roche. Thank you so much for taking the time to
-                    take part in my survey. I am researching whether or not deep machine
-                    learnt language models and speech synthesis can replace story writers
-                    and voice actors for games scripts and non-player characters
-                    respectively.{" "}
-                </p>
-                <p>
-                    What I would like you to do is to interact with some variations of
-                    these models and rate them after your interaction. You will give a
-                    prompt to the language model for example: “Mary has 17 children, and
-                    she is late for work, she is very close to being fired”, and the model
-                    will return a story that it has created based off this prompt. You
-                    will also have a conversation with the model to replicate talking to a
-                    NPC. After this you will rate the model based off a variety of
-                    parameters. It shouldn’t take you too long, but I ask that you do not
-                    use any profanity or try to use the system in any malicious way.{" "}
-                </p>
-                <p>
-                    This bit is very important: you have the right to withdraw your
-                    consent up until the point you submit your data at the end of this
-                    website. After this point your data will be anonymised and you will
-                    not be able to remove it from the study. If at any time you want to
-                    withdraw your consent whilst on this website, just close the tab and
-                    you will not have submitted anything to me. You can read the full
-                    intent of this study and consent here.
-                </p>
-                <p>
-                    If you choose to take part in my study after reading the above, thank
-                    you so much for your time it is greatly appreciated.{" "}
-                </p>
-                <p>
-                    I give consent to take part in this study and I am informed I can
-                    withdraw up until sending my data to the student’s University OneDrive
-                    account, I need simply leave this page.{" "}
-                </p>
-                <div class="row">
-                    <button
-                        type="button"
-                        class="btn btn-success"
-                        vOn:click={this.sendConsent}
-                    >
-                        Give Consent
-                    </button>
-                </div>
+            <div id="consent">
+                <BContainer>
+                    <div>
+                        <h2>Can language models and speech synthesis produce believeable NPC's to use in games?</h2>
+                        <h5>An undergraduate study for the Universtiy Of Lincoln by James Roche 19704410</h5>
+                        <p>Hi there, thankyou for taking the time to take part in my study. I am looking into how Generative Pre-trained Transformers and langauge models can be used in games developers to replace voice acted Non-Player entities.</p>
+                        <p>In the next couple of pages you will interact with these language models and hear the voice syntesis for them. Imagine they are a character in a game or the story for a game.</p>
+                        <p>These models can be made more specific by giving them information for which they can be trained on. This allows them to gain knowledge on specific scenarios, but in this instance they are very general.</p>
+                        <p>By taking part in this study you consent to allow me to use your responses in my research and to produce conclussions off said data. You can read the whole consent form here</p>
+                        <BButton v-b-modal="ConsentModal" class="mb-3">Show Consent</BButton>
+                    </div>
+                    <div class="row">
+                        <button
+                            type="button"
+                            class="btn btn-success"
+                            vOn:click={this.sendConsent}
+                        >
+                            Give Consent
+                        </button>
+                    </div>
+                    <BModal id="ConsentModal" title="Consent">
+                        <p>Your data will be stored and annonymised on an Microsoft Azure server, and will only be stored at the very end of this site once you click submit.</p>
+                        <p>Once you have submitted your data it is impossible to ask for it back or to be removed from the study as it will be anonymous. Your data may be kept in the Universtiy of Lincoln after the study has concluded and may be used by other academics for research.</p>
+                        <p>Conclusions will be drawn and your responses maybe directly quoted in the report. The dissertation may be put up by the University where you can see the results of your help.</p>
+                        <p>Thank you so much for giving me your time, I greatly apreciate it.</p>
+                    </BModal>
+                </BContainer>
             </div>
         );
     },
