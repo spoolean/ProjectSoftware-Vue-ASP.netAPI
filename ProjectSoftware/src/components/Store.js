@@ -10,9 +10,28 @@ export default new Vuex.Store({
         model1: "",
         model2: "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.\n\nHuman: ",
         survey: {
-            rating: null,
-            checkBox: false,
-            reviewText: "",
+            models: {},
+            voice1: {
+                overallRating: 0,
+                listeningEffort: "",
+                hardToUnderstand: "",
+                whichWords: "",
+                voicePace: "",
+                voice3Comparison: ""
+            },
+            voice2: {
+                overallRating: 0,
+                listeningEffort: "",
+                hardToUnderstand: "",
+                whichWords: "",
+                voicePace: "",
+                voice3Comparison: ""
+            },
+            voices: {
+                preferredVoice: "",
+                preferredVoiceReason: "",
+                clearestVoice: ""
+            },
         }
     },
     mutations: {

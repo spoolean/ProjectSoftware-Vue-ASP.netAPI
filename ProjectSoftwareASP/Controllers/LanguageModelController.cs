@@ -38,7 +38,7 @@ namespace ProjectSoftwareASP.Controllers
                 var json = new
                 {
                     prompt = $"{requestText}",
-                    max_tokens = 600
+                    max_tokens = 1000
                 };
                 request.AddJsonBody(json);
 
@@ -78,7 +78,6 @@ namespace ProjectSoftwareASP.Controllers
                     presence_penalty = 0.6,
                     temperature = 0.9
                 };
-                Console.WriteLine(json);
                 request.AddJsonBody(json);
 
                 try
@@ -86,7 +85,7 @@ namespace ProjectSoftwareASP.Controllers
                     RestResponse response = await Client.ExecuteAsync(request);
                     PromptResponseModel responseModel = JsonConvert.DeserializeObject<PromptResponseModel>(response.Content);
                     Console.WriteLine(responseModel.Choices.FirstOrDefault().Text);
-                    return Ok("\nAI: "+responseModel.Choices.FirstOrDefault().Text);
+                    return Ok("\nAI:" + responseModel.Choices.FirstOrDefault().Text.Trim() + "\nHuman: ");
                 }
                 catch (Exception e)
                 {
