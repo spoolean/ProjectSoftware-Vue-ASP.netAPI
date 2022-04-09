@@ -6,7 +6,9 @@ export default {
         placeholder: "Give the bot a prompt"
     }),
     methods: {
-
+        evaluate() {
+            this.$store.dispatch("changePage", 3)
+        }
     },
     computed: {},
     render() {
@@ -20,8 +22,15 @@ export default {
                         <BCol md="6">
                             <BContainer class="mb-3">
                                 <BRow aligns-h="between">
-                                    <BCol cols="9">This is the story model for you to interact with. </BCol>
-                                    <BCol cols="1"><BButton on-click={() => { this.$store.state.model1 = ""; }}>Clear</BButton></BCol>
+                                    <BCol>Story Model</BCol>
+                                    <BCol>
+                                        <BDropdown text="Prompts">
+                                            <BDropdownItemButton on-click={() => { this.$store.state.model1 = this.$store.state.prompt1; }}>Prompt 1</BDropdownItemButton>
+                                            <BDropdownItemButton on-click={() => { this.$store.state.model1 = this.$store.state.prompt2; }}>Prompt 2</BDropdownItemButton>
+                                            <BDropdownItemButton on-click={() => { this.$store.state.model1 = this.$store.state.prompt3; }}>Prompt 3</BDropdownItemButton>
+                                        </BDropdown>
+                                    </BCol>
+                                    <BCol><BButton on-click={() => { this.$store.state.model1 = ""; }}>Clear</BButton></BCol>
                                 </BRow>
                                 <BRow>
                                     <BFormTextarea
@@ -62,16 +71,23 @@ export default {
                                 </BRow>
                                 <BRow>
                                     <BDropdown text="Voice to generate">
-                                        <BDropdownItemButton>Voice 1</BDropdownItemButton>
-                                        <BDropdownItemButton>Voice 2</BDropdownItemButton>
-                                        <BDropdownItemButton>Voice 3</BDropdownItemButton>
+                                        <BDropdownItemButton on-click={() => { this.$store.dispatch("sendTTS", { model: 1, tts: 0, engine: 0 }); }}>Voice 1</BDropdownItemButton>
+                                        <BDropdownItemButton on-click={() => { this.$store.dispatch("sendTTS", { model: 1, tts: 1, engine: 1 }); }}>Voice 2</BDropdownItemButton>
+                                        <BDropdownItemButton on-click={() => { this.$store.dispatch("sendTTS", { model: 1, tts: 1, engine: 0 }); }}>Voice 3</BDropdownItemButton>
                                     </BDropdown>
                                 </BRow>
                             </BContainer>
                         </BCol>
+                        <button
+                            type="button"
+                            class="btn btn-success mt-3"
+                            vOn:click={this.evaluate}
+                        >
+                            To Survey
+                        </button>
                     </BRow>
-                    <BButton class="btn btn-success" vOn:click={this.$store.dispatch("changePage", 3)}> To the survey </BButton>
                 </BContainer>
+                
             </div>
         );
     },

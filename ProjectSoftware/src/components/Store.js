@@ -9,8 +9,25 @@ export default new Vuex.Store({
         activePage: 1,
         model1: "",
         model2: "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.\n\nHuman: ",
+        prompt1: "Prompt 1",
+        prompt2: "Prompt 2",
+        prompt3: "Prompt 3",
         survey: {
-            models: {},
+            story: {
+                trailOff: "",
+                trailOffReason: "",
+                errors: "",
+                knowledgable: "",
+                engagingStorys: "",
+                prompt1: "",
+                prompt2: "",
+                prompt3: "",
+            },
+            chat: {
+                realisticAnswers: "",
+                couldConverse: "",
+                canLie: ""
+            },
             voice1: {
                 overallRating: 0,
                 listeningEffort: "",
@@ -32,7 +49,7 @@ export default new Vuex.Store({
                 preferredVoiceReason: "",
                 clearestVoice: ""
             },
-        }
+        },
     },
     mutations: {
         setActivePage(state, page) {
