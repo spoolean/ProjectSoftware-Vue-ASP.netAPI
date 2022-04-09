@@ -6,6 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         loading: false,
+        submitted: false,
         activePage: 1,
         model1: "",
         model2: "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.\n\nHuman: ",
@@ -83,6 +84,8 @@ export default new Vuex.Store({
             commit("decrementPage");
         },
         sendPrompt({ commit }, modelNumber) {
+            this.state.loading = true;
+            
             let model = (modelNumber === 1) ? this.state.model1 : this.state.model2;
             let setModel = (modelNumber === 1) ? "setModel1" : "setModel2";
             let type = (modelNumber === 1) ? 'completion' : 'chat';
@@ -99,6 +102,7 @@ export default new Vuex.Store({
             }).then(data => {
                 console.log(data);
                 commit(setModel, data);
+                this.state.loading = false;
             }).catch(error => { console.log(error); });
         },
         sendTTS({ commit }, { model, tts , engine}) {
@@ -112,6 +116,7 @@ export default new Vuex.Store({
             audio.play();
         },
         submitResponse({ commit }) {
+            this.state.loading = true;
             console.log(JSON.stringify(this.state.survey));
             fetch(`${window.location.origin}/submit`, {
                 method: 'POST',
@@ -123,6 +128,7 @@ export default new Vuex.Store({
                 }
                 return response.text();
             }).then(data => {
+                this.state.loading = false;
                 console.log(data);
             }).catch(error => { console.log(error); });
         },

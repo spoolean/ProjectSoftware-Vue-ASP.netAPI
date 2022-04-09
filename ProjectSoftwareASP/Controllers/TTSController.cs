@@ -3,8 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using System.Text;
 using System.Security.Cryptography;
 using Microsoft.CognitiveServices.Speech;
-using Amazon.Polly;
-using Amazon.Polly.Model;
 using RestSharp;
 using ProjectSoftwareASP.Models;
 using Newtonsoft.Json;

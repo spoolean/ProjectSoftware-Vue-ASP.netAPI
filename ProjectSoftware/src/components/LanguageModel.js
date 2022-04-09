@@ -1,4 +1,4 @@
-import { BButton, BCol, BContainer, BDropdown, BDropdownItemButton, BFormTextarea, BRow } from "bootstrap-vue"
+import { BButton, BCol, BContainer, BDropdown, BDropdownItemButton, BFormTextarea, BRow, BSpinner } from "bootstrap-vue"
 
 export default {
     name: "LanguageModel",
@@ -42,9 +42,10 @@ export default {
                                 </BRow>
                                 <BRow>
                                     <BButton on-click={() => { this.$store.dispatch("sendPrompt", 1) }}>AI Response</BButton>
+                                    {this.$store.state.loading && <BSpinner/>}
                                 </BRow>
                                 <BRow>
-                                    <BDropdown text="Voice to generate">
+                                    <BDropdown text="Voice to generate" class="plr-n3">
                                         <BDropdownItemButton on-click={() => { this.$store.dispatch("sendTTS", { model: 1, tts: 0, engine: 0 }); }}>Voice 1</BDropdownItemButton>
                                         <BDropdownItemButton on-click={() => { this.$store.dispatch("sendTTS", { model: 1, tts: 1, engine: 1 }); }}>Voice 2</BDropdownItemButton>
                                         <BDropdownItemButton on-click={() => { this.$store.dispatch("sendTTS", { model: 1, tts: 1, engine: 0 }); }}>Voice 3</BDropdownItemButton>
