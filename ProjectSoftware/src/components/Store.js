@@ -7,6 +7,7 @@ export default new Vuex.Store({
     state: {
         loading: false,
         submitted: false,
+        audio: new Audio(),
         activePage: 1,
         model1: "",
         model2: "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.\n\nHuman: ",
@@ -57,7 +58,7 @@ export default new Vuex.Store({
             state.activePage = page;
         },
         incrementPage(state) {
-            if (state.activePage != 4) {
+            if (state.activePage != 5) {
                 state.activePage += 1;
             }
         },
@@ -112,8 +113,9 @@ export default new Vuex.Store({
             let ttsModel = ttsChoice[tts];
             let engineModel = engineChoice[engine];
 
-            let audio = new Audio(`${window.location.origin}/tts/${ttsModel}/?answer=${modelText}&engine=${engineModel}`)
-            audio.play();
+            this.state.audio.pause();
+            this.state.audio.src = `${window.location.origin}/tts/${ttsModel}/?answer=${modelText}&engine=${engineModel}`;
+            this.state.audio.play();
         },
         submitResponse({ commit }) {
             this.state.loading = true;

@@ -20,3 +20,8 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.dropdown {
+    padding-left: -10.5px;
+    padding-right: -10.5px;
+}

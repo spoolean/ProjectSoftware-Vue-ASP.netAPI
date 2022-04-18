@@ -5,7 +5,7 @@ export default {
     render() {
         return (
             <div>
-                <BSpinner label="loading..."></BSpinner>
+                <BSpinner></BSpinner>
             </div>
         );
     }

@@ -1,5 +1,6 @@
 import Consent from "./components/Consent.js";
 import LanguageModel from "./components/LanguageModel.js";
+import ChatModel from "./components/ChatModel.js";
 import Evaluation from "./components/Evaluation.js";
 import Submit from "./components/Submit.js";
 
@@ -25,8 +26,10 @@ export default {
                 {/* Dynamically render each page/component based off the page number */}
                 {this.$store.state.activePage === 1 && <Consent />}
                 {this.$store.state.activePage === 2 && <LanguageModel />}
-                {this.$store.state.activePage === 3 && <Evaluation />}
-                {this.$store.state.activePage === 4 && <Submit />}
+                {this.$store.state.activePage === 3 && <ChatModel />}
+                {this.$store.state.activePage === 4 && <Evaluation />}
+                {this.$store.state.activePage === 5 && <Submit />}
+                
             </div>
         );
     },
