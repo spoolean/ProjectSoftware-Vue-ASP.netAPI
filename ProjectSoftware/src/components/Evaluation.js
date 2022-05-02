@@ -22,9 +22,9 @@ export default {
             { text: "Very knowledgeable", value: "Very knowledgeable" },
         ],
         engagingStorys: [
-            { text: "Can create engaging storys", value: "Can create engaging storys" },
-            { text: "Can occasionally create engaging storys", value: "Can occasionally create engaging storys" },
-            { text: "Can create non-engaging storys", value: "Can create non-engaging storys" },
+            { text: "Can create engaging stories", value: "Can create engaging stories" },
+            { text: "Can occasionally create engaging stories", value: "Can occasionally create engaging stories" },
+            { text: "Can create non-engaging stories", value: "Can create non-engaging stories" },
         ],
         realisticAnswers: [
             { text: "Can create realistic answers", value: "Can create realistic answers" },
@@ -91,7 +91,7 @@ export default {
                         <BFormRadioGroup class="mb-3" id="errors" v-model={this.$store.state.survey.story.errors} options={this.errors}></BFormRadioGroup>
                         <label for="knowledgable">Was the model knowledgable?</label>
                         <BFormRadioGroup class="mb-3" id="knowledgable" v-model={this.$store.state.survey.story.knowledgable} options={this.knowledgable}></BFormRadioGroup>
-                        <label for="engagingStorys">Rembering that the model can be trained, do you think that it could create engaging storys?</label>
+                        <label for="engagingStorys">Rembering that the model can be trained, do you think that it could create engaging stories?</label>
                         <BFormRadioGroup class="mb-3" id="engagingStorys" v-model={this.$store.state.survey.story.engagingStorys} options={this.engagingStorys}></BFormRadioGroup>
                         <label for="prompt1">Please copy and paste your response from prompt 1</label>
                         <BFormInput class="mb-3" id="prompt1" v-model={this.$store.state.survey.story.prompt1}></BFormInput>
@@ -103,7 +103,7 @@ export default {
                         <h4>NPC chat</h4>
                         <label for="realisticAnswers">Did the model give realistic answers?</label>
                         <BFormRadioGroup class="mb-3" id="realisticAnswers" v-model={this.$store.state.survey.chat.realisticAnswers} options={this.realisticAnswers}></BFormRadioGroup>
-                        <label for="couldConverse">Remebering that the bot can be trained, do you think that it could converse with the player in a game?</label>
+                        <label for="couldConverse">Rembering that the bot can be trained, do you think that it could converse with the player in a game?</label>
                         <BFormRadioGroup class="mb-3" id="couldConverse" v-model={this.$store.state.survey.chat.couldConverse} options={this.couldConverse}></BFormRadioGroup>
                         <label for="canLie"> If the bot could lie, do you think it would make it a more believable character?</label>
                         <BFormRadioGroup class="mb-3" id="canLie" v-model={this.$store.state.survey.chat.canLie} options={this.canLie}></BFormRadioGroup>
@@ -121,7 +121,7 @@ export default {
                         <BFormInput class="mb-3" id="whichWords" v-model={this.$store.state.survey.voice1.whichWords}></BFormInput>
                         <label for="voicePace">Was the voice the right pace for you to understand?</label>
                         <BFormRadioGroup class="mb-3" id="voicePace" v-model={this.$store.state.survey.voice1.voicePace} options={this.voicePace}></BFormRadioGroup>
-                        <label for="voiceComparison">In comparrison to voice 3 how much better or worse was this voice?</label>
+                        <label for="voiceComparison">In comparison to voice 3 how much better or worse was this voice?</label>
                         <BFormRadioGroup class="mb-3" id="voiceComparison" v-model={this.$store.state.survey.voice1.voice3Comparison} options={this.voice3ComparisonOptions}></BFormRadioGroup>
                     </div>
                     <div>
@@ -136,7 +136,7 @@ export default {
                         <BFormInput class="mb-3" id="whichWords2" v-model={this.$store.state.survey.voice2.whichWords}></BFormInput>
                         <label for="voicePace2">Was the voice the right pace for you to understand?</label>
                         <BFormRadioGroup class="mb-3" id="voicePace2" v-model={this.$store.state.survey.voice2.voicePace} options={this.voicePace}></BFormRadioGroup>
-                        <label for="voiceComparison2">In comparrison to voice 3 how much better or worse was this voice?</label>
+                        <label for="voiceComparison2">In comparison to voice 3 how much better or worse was this voice?</label>
                         <BFormRadioGroup class="mb-3" id="voiceComparison2" v-model={this.$store.state.survey.voice2.voice3Comparison} options={this.voice3ComparisonOptions}></BFormRadioGroup>
                     </div>
                     <div>

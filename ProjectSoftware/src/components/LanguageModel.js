@@ -16,7 +16,7 @@ export default {
             <div>
                 <BContainer>
                     <BContainer>
-                        <p>This is the langauge model. I would like you to please give the model a prompt, some example prompts have been given to you below. It will complete the prompt you have given it and is good for finishing storys. Please pay atteniton to the responses it gives and if it ever sticks, clear it and try again.</p>
+                        <p>This is the langauge model. I would like you to please give the model a prompt, some example prompts have been given to you below. It will complete the prompt you have given it and is good for finishing stories. Please pay atteniton to the responses it gives and if it ever sticks, clear it and try again.</p>
                     </BContainer>
                     <BRow>
                         <BContainer class="mb-3">

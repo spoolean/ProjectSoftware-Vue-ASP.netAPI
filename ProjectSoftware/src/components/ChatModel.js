@@ -34,6 +34,7 @@ export default {
                             </BRow>
                             <BRow>
                                 <BButton on-click={() => { this.$store.dispatch("sendPrompt", 2) }}>AI Response</BButton>
+                                {this.$store.state.loading && <BSpinner />}
                             </BRow>
                             <BRow>
                                 <BDropdown text="Voice to generate">

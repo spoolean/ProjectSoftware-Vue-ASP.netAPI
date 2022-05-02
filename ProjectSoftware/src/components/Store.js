@@ -113,9 +113,11 @@ export default new Vuex.Store({
             let ttsModel = ttsChoice[tts];
             let engineModel = engineChoice[engine];
 
+            this.state.loading = true;
             this.state.audio.pause();
             this.state.audio.src = `${window.location.origin}/tts/${ttsModel}/?answer=${modelText}&engine=${engineModel}`;
             this.state.audio.play();
+            this.state.loading = false;
         },
         submitResponse({ commit }) {
             this.state.loading = true;
