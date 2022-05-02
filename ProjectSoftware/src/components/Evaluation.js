@@ -85,7 +85,7 @@ export default {
                         <h4>Story creation</h4>
                         <label for="trailOff">Did the model stick to the orginal prompt or did it trail off?</label>
                         <BFormRadioGroup class="mb-3" id="trailOff" v-model={this.$store.state.survey.story.trailOff} options={this.trailOff}></BFormRadioGroup>
-                        <label for="trailOffReason">If it did not stick to the orriginal prompt, what did it do?</label>
+                        <label for="trailOffReason">If it did not stick to the original prompt, what did it do?</label>
                         <BFormInput class="mb-3" id="prompt1" v-model={this.$store.state.survey.story.trailOffReason}></BFormInput>
                         <label for="errors">Did the model make any errors?</label>
                         <BFormRadioGroup class="mb-3" id="errors" v-model={this.$store.state.survey.story.errors} options={this.errors}></BFormRadioGroup>

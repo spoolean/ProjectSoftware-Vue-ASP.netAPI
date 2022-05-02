@@ -7,7 +7,7 @@ export default {
     }),
     methods: {
         evaluate() {
-            this.$store.dispatch("changePage", 3)
+            this.$store.dispatch("changePage", 4)
         }
     },
     computed: {},
@@ -21,7 +21,7 @@ export default {
                     <BRow>
                         <BContainer class="mb-3">
                             <BRow aligns-h="between">
-                                <BCol cols="10">This is the chat model. </BCol>
+                                <BCol cols="10">Chat model. </BCol>
                                 <BCol cols="1"><BButton on-click={() => { this.$store.state.model2 = ""; }}>Clear</BButton></BCol>
                             </BRow>
                             <BRow>

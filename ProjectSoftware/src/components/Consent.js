@@ -19,7 +19,7 @@ export default {
                     <div>
                         <h2>Can language models and speech synthesis produce believable Non-Player-Characters (NPCs) to use in games?</h2>
                         <h5>An undergraduate study for the Universtiy Of Lincoln by James Roche 19704410</h5>
-                        <p>Hi there, thankyou for taking the time to take part in my study. I am looking into how Generative Pre-trained Transformers and langauge models can be used by games developers to replace voice acted Non-Player entities.</p>
+                        <p>Hi there, thankyou for taking the time to take part in my study. I am looking into how Generative Pre-trained Transformers and text-to-speech services can be used by games developers to replace voice acted Non-Player entities.</p>
                         <p>In the next couple of pages you will interact with these language models and hear the voice syntesis for them. Imagine they are a character in a game or the story for a game.</p>
                         <p>These models can be made more specific by giving them information for which they can be trained on. This allows them to gain knowledge on specific scenarios, but in this instance they are very general.</p>
                         <p>By taking part in this study you consent to allow me to use your responses in my research and to produce conclussions of said data. You can read the whole consent form here</p>

@@ -11,9 +11,9 @@ export default new Vuex.Store({
         activePage: 1,
         model1: "",
         model2: "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.\n\nHuman: ",
-        prompt1: "Prompt 1",
-        prompt2: "Prompt 2",
-        prompt3: "Prompt 3",
+        prompt1: "There were once three brothers who were travelling along a lonely, winding road at twilight. In time, the brothers reached a river, too deep to wade through, and too dangerous to swim across.",
+        prompt2: "It began with the forging of the Great Rings. Three were given to the Elves, immortal, wisest and fairest of all beings. Seven to the Dwarf-Lords, great miners and craftsmen of the mountain halls. And nine, nine rings were gifted to the race of Men, who above all else desire power.",
+        prompt3: "Penelope was a clever, clear-minded girl eager to start her new life in a different state, in a different school, with different parents. No one could ever know who she once was.",
         survey: {
             story: {
                 trailOff: "",
